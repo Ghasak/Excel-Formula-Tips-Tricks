@@ -15,10 +15,17 @@ selection.Font.Name = "Times New Roman"
 Check `./CH02_AdvancedVBA/exampleFiles/MacroBasics_to_Advanced.xlsm`
 
 ```vb
-'Change the current name for the active sheet'
-ActiveSheet.Name = "Third Quarter"
+Sub ChnageSheetName()
+'
+' Macro1 Macro
+'
 
-'This will create three sheets and I have a sheet as a default so I needed to shift my selection sheet by 1 to start from the second sheet'
+'
+
+   'ActiveSheet.Name = "Third Quarter"
+
+
+End Sub
 Sub CreateSheet()
 '
 ' CreateSheet Macro
@@ -27,14 +34,39 @@ Sub CreateSheet()
 '
 Dim sheetNum As Integer
 
-For sheetNum = 1 To 3
+For sheetNum = 1 To 10
     Sheets.Add After:=ActiveSheet
     Sheets(sheetNum + 1).Select
     Cells(1, 1).Value = "Sheet Number:  " & sheetNum
     ActiveSheet.Name = "Quarter " & sheetNum
 
 Next
+
+
+For sheetNum = 1 To Worksheets.Count
+
+Sheets(sheetNum).Select
+    Cells(1, 5).Value = "Sheet Number:  " & sheetNum
+    Next
+Sheets(1).Activate
 End Sub
+Sub CleanMySheets()
+'
+' Macro12 Macro
+'
+'
+Dim sheetNum As Integer
+
+For sheetNum = 2 To Worksheets.Count
+    'Sheets("Quarter 1").Select
+        If sheetNum = Worksheets.Count Then
+    Exit For 'Continue For
+    End If
+    'Sheets(sheetNum).Select
+   Sheets(sheetNum).Delete
+    'ActiveWindow.SelectedSheets.Delete
+
+Next
 
 
 ```
